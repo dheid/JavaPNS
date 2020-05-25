@@ -37,7 +37,3 @@ To use javapns in your project, please add the following dependency to your pom.
 	<version>2.3.3</version>
 </dependency>
 ```
-
-### Cutting a Release
-
-`mvn -Drelease=true ...`
