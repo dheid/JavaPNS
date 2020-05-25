@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * <h1>Pushes a payload to a large number of devices using multiple threads</h1>
+ * Pushes a payload to a large number of devices using multiple threads
  * <p>
  * <p>The list of devices is spread evenly into multiple {@link javapns.notification.transmission.NotificationThread}s.</p>
  * <p>

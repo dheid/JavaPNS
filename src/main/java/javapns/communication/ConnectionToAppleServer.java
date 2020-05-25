@@ -14,7 +14,7 @@ import java.net.Socket;
 import java.security.KeyStore;
 
 /**
- * <h1>Class representing an abstract connection to an Apple server</h1>
+ * Class representing an abstract connection to an Apple server
  * <p>
  * Communication protocol differences between Notification and Feedback servers are
  * implemented in {@link javapns.notification.ConnectionToNotificationServer} and {@link javapns.feedback.ConnectionToFeedbackServer}.

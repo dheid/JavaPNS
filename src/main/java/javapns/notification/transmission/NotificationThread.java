@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <h1>Pushes payloads asynchroneously using a dedicated thread.</h1>
+ * Pushes payloads asynchroneously using a dedicated thread.
  * <p>
  * <p>A NotificationThread is created with one of two modes:  LIST or QUEUE.
  * In LIST mode, the thread is given a predefined list of devices and pushes all notifications as soon as it is started.  Its work is complete and the thread ends as soon as all notifications have been sent.

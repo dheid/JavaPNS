@@ -1,7 +1,7 @@
 package javapns.notification.transmission;
 
 /**
- * <h1>An event listener for monitoring progress of NotificationThreads</h1>
+ * An event listener for monitoring progress of NotificationThreads
  *
  * @author Sylvain Pedneault
  */
