@@ -1,14 +1,10 @@
 ## JavaPNS
 
-[![Build Status](https://travis-ci.org/mlaccetti/JavaPNS.svg?branch=develop)](https://travis-ci.org/mlaccetti/JavaPNS)
-[![Coverage Status](https://coveralls.io/repos/github/mlaccetti/JavaPNS/badge.svg?branch=master)](https://coveralls.io/github/mlaccetti/JavaPNS?branch=develop)
-[![Code Climate](https://codeclimate.com/github/mlaccetti/JavaPNS/badges/gpa.svg)](https://codeclimate.com/github/mlaccetti/JavaPNS)
-
 Apple Push Notification Service Provider for Java
 
 Fork of JavaPNS to include Maven support - http://code.google.com/p/javapns/
 
-Java 1.8+ compatible
+Java 11+ compatible
 
 ### Updates
 
@@ -36,7 +32,7 @@ javapns is available on the Central Maven Repository.
 To use javapns in your project, please add the following dependency to your pom.xml file:
 ```
 <dependency>
-	<groupId>com.github.mlaccetti</groupId>
+	<groupId>org.drjekyll</groupId>
 	<artifactId>javapns</artifactId>
 	<version>2.3.3</version>
 </dependency>
