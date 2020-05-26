@@ -209,7 +209,7 @@ class NotificationTest extends TestFoundation {
       printPushedNotifications("All notifications pushed successfully (" + successfulNotifications.size() + "):", successfulNotifications);
     } else if (successful == 0 && failed > 0) {
       printPushedNotifications("All notifications failed (" + failedNotifications.size() + "):", failedNotifications);
-    } else if (successful == 0 && failed == 0) {
+    } else if (successful == 0) {
       System.out.println("No notifications could be sent, probably because of a critical error");
     } else {
       printPushedNotifications("Some notifications failed (" + failedNotifications.size() + "):", failedNotifications);

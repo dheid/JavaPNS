@@ -236,15 +236,13 @@ class SpecificNotificationTests extends TestFoundation {
 
         //noinspection Duplicates
         for (int i = 0; i < devices; i++) {
-          String tokenToUse = token;
-          if (tokenToUse == null || tokenToUse.length() != 64) {
-            tokenToUse = "123456789012345678901234567890123456789012345678901234567" + (1000000 + i);
-          }
+          String tokenToUse = null;
+          tokenToUse = "123456789012345678901234567890123456789012345678901234567" + (1000000 + i);
           deviceList.add(new BasicDevice(tokenToUse));
         }
         deviceList.add(new BasicDevice(realToken));
         System.out.println("Creating " + threads + " notification threads");
-        final NotificationThreads work = new NotificationThreads(server, simulation ? payload.asSimulationOnly() : payload, deviceList, threads);
+        final NotificationThreads work = new NotificationThreads(server, payload, deviceList, threads);
         //work.setMaxNotificationsPerConnection(10000);
         //System.out.println("Linking notification work debugging listener");
         //work.setListener(DEBUGGING_PROGRESS_LISTENER);
