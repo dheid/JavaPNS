@@ -85,73 +85,74 @@ public class FeedbackServiceManager {
 
     // Compute
     LinkedList<Device> listDev = null;
-    try {
-      final InputStream socketStream = socket.getInputStream();
+      try (socket) {
+          final InputStream socketStream = socket.getInputStream();
 
-      // Read bytes
-      final byte[] b = new byte[1024];
-      final ByteArrayOutputStream message = new ByteArrayOutputStream();
-      int nbBytes;
-      // socketStream.available can return 0
-      // http://forums.sun.com/thread.jspa?threadID=5428561
-      while ((nbBytes = socketStream.read(b, 0, 1024)) != -1) {
-        message.write(b, 0, nbBytes);
-      }
+          // Read bytes
+          final byte[] b = new byte[1024];
+          final ByteArrayOutputStream message = new ByteArrayOutputStream();
+          int nbBytes;
+          // socketStream.available can return 0
+          // http://forums.sun.com/thread.jspa?threadID=5428561
+          while ((nbBytes = socketStream.read(b, 0, 1024)) != -1) {
+              message.write(b, 0, nbBytes);
+          }
 
-      listDev = new LinkedList<>();
-      final byte[] listOfDevices = message.toByteArray();
-      final int nbTuples = listOfDevices.length / FEEDBACK_TUPLE_SIZE;
-      logger.debug("Found: [" + nbTuples + "]");
-      for (int i = 0; i < nbTuples; i++) {
-        final int offset = i * FEEDBACK_TUPLE_SIZE;
+          listDev = new LinkedList<>();
+          final byte[] listOfDevices = message.toByteArray();
+          final int nbTuples = listOfDevices.length / FEEDBACK_TUPLE_SIZE;
+          logger.debug("Found: [" + nbTuples + "]");
+          for (int i = 0; i < nbTuples; i++) {
+              final int offset = i * FEEDBACK_TUPLE_SIZE;
 
-        // Build date
-        final int firstByte;
-        final int secondByte;
-        final int thirdByte;
-        final int fourthByte;
-        final long anUnsignedInt;
+              // Build date
+              final int firstByte;
+              final int secondByte;
+              final int thirdByte;
+              final int fourthByte;
+              final long anUnsignedInt;
 
-        firstByte = 0x000000FF & ((int) listOfDevices[offset]);
-        secondByte = 0x000000FF & ((int) listOfDevices[offset + 1]);
-        thirdByte = 0x000000FF & ((int) listOfDevices[offset + 2]);
-        fourthByte = 0x000000FF & ((int) listOfDevices[offset + 3]);
-        anUnsignedInt = ((long) (firstByte << 24 | secondByte << 16 | thirdByte << 8 | fourthByte)) & 0xFFFFFFFFL;
-        final Timestamp timestamp = new Timestamp(anUnsignedInt * 1000);
+              firstByte = 0x000000FF & ((int) listOfDevices[offset]);
+              secondByte = 0x000000FF & ((int) listOfDevices[offset + 1]);
+              thirdByte = 0x000000FF & ((int) listOfDevices[offset + 2]);
+              fourthByte = 0x000000FF & ((int) listOfDevices[offset + 3]);
+              anUnsignedInt = ((long) (firstByte << 24 | secondByte << 16 | thirdByte << 8 | fourthByte)) & 0xFFFFFFFFL;
+              final Timestamp timestamp = new Timestamp(anUnsignedInt * 1000);
 
-        // Build device token length
-        final int deviceTokenLength = listOfDevices[offset + 4] << 8 | listOfDevices[offset + 5];
+              // Build device token length
+              final int deviceTokenLength = listOfDevices[offset + 4] << 8 | listOfDevices[offset + 5];
 
-        // Build device token
-        String deviceToken = "";
-        int octet;
-        for (int j = 0; j < 32; j++) {
-          octet = 0x000000FF & ((int) listOfDevices[offset + 6 + j]);
-          deviceToken = deviceToken.concat(String.format("%02x", octet));
-        }
+              // Build device token
+              String deviceToken = "";
+              int octet;
+              for (int j = 0; j < 32; j++) {
+                  octet = 0x000000FF & ((int) listOfDevices[offset + 6 + j]);
+                  deviceToken = deviceToken.concat(String.format("%02x", octet));
+              }
 
-        // Build device and add to list
-        /* Create a basic device, as we do not want to go through the factory and create a device in the actual database... */
-        final Device device = new BasicDevice();
-        device.setToken(deviceToken);
-        device.setLastRegister(timestamp);
-        listDev.add(device);
-        logger.info("FeedbackManager retrieves one device :  " + timestamp + ";" + deviceTokenLength + ";" + deviceToken + ".");
-      }
+              // Build device and add to list
+              /* Create a basic device, as we do not want to go through the factory and create a device in the actual database... */
+              final Device device = new BasicDevice();
+              device.setToken(deviceToken);
+              device.setLastRegister(timestamp);
+              listDev.add(device);
+              logger.info("FeedbackManager retrieves one device :  "
+                          + timestamp
+                          + ";"
+                          + deviceTokenLength
+                          + ";"
+                          + deviceToken
+                          + ".");
+          }
 
-      // Close the socket and return the list
+          // Close the socket and return the list
 
-    } catch (final Exception e) {
-      logger.debug("Caught exception fetching devices from Feedback Service");
-      throw new CommunicationException("Problem communicating with Feedback service", e);
-    } finally {
-      try {
-        socket.close();
       } catch (final Exception e) {
-        // empty
+          logger.debug("Caught exception fetching devices from Feedback Service");
+          throw new CommunicationException("Problem communicating with Feedback service", e);
       }
-    }
-    return listDev;
+      // empty
+      return listDev;
   }
 
   /**
