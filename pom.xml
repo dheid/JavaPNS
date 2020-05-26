@@ -7,7 +7,7 @@
   <version>2.4.2-SNAPSHOT</version>
 
   <name>JavaPNS</name>
-  <description>Java API for Apple Push Notification Service</description>
+  <description>Java client library to use Apple Push Notification Service</description>
   <url>https://javapns.drjekyll.org</url>
 
   <organization>
@@ -30,6 +30,11 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>3.0.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
