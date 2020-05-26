@@ -557,7 +557,7 @@ public class PushNotificationManager {
    * @return the byteArray to write to the SSLSocket OutputStream
    * @throws IOException
    */
-  private byte[] getMessage(String deviceToken, final Payload payload, final int identifier, final PushedNotification message) throws IOException, Exception {
+  private byte[] getMessage(String deviceToken, final Payload payload, final int identifier, final PushedNotification message) throws Exception {
     logger.debug("Building Raw message from deviceToken and payload");
 
     /* To test with a corrupted or invalid token, uncomment following line*/
