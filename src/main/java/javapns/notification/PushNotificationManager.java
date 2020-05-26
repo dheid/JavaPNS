@@ -768,10 +768,11 @@ public class PushNotificationManager {
 
     /* Device token (shortened), Identifier and expiry */
     final int l = useEnhancedNotificationFormat ? 4 : 8;
-    alert.append("").append(deviceToken.substring(0, l)).append("�").append(deviceToken.substring(64 - l, 64)).append(useEnhancedNotificationFormat ? " [Id:" + identifier + "] " + (payload.getExpiry() <= 0 ? "No-store" : "Exp:T+" + payload.getExpiry()) : "").append("\n");
+    alert
+      .append(deviceToken, 0, l).append("�").append(deviceToken, 64 - l, 64).append(useEnhancedNotificationFormat ? " [Id:" + identifier + "] " + (payload.getExpiry() <= 0 ? "No-store" : "Exp:T+" + payload.getExpiry()) : "").append("\n");
 
     /* Format & encoding */
-    alert.append(useEnhancedNotificationFormat ? "Enhanced" : "Simple").append(" format / ").append(payload.getCharacterEncoding()).append("").append("");
+    alert.append(useEnhancedNotificationFormat ? "Enhanced" : "Simple").append(" format / ").append(payload.getCharacterEncoding());
 
     return alert.toString();
   }

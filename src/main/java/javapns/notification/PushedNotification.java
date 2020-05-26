@@ -238,7 +238,7 @@ public class PushedNotification {
     final StringBuilder msg = new StringBuilder();
     msg.append("[").append(identifier).append("]");
     msg.append(transmissionCompleted ? " transmitted " + payload + " on " + getLatestTransmissionAttempt() : " not transmitted");
-    msg.append(" to token ").append(device.getToken().substring(0, 5)).append("..").append(device.getToken().substring(59, 64));
+    msg.append(" to token ").append(device.getToken(), 0, 5).append("..").append(device.getToken(), 59, 64);
     if (response != null) {
       msg.append("  ").append(response.getMessage());
     }

@@ -74,7 +74,7 @@ class SpecificNotificationTests extends TestFoundation {
 
   private static void test_Issue74(final String keystore, final String password, final String token, final boolean production) {
     try {
-      System.out.println("");
+      System.out.println();
       System.out.println("TESTING 257-BYTES PAYLOAD WITH SIZE ESTIMATION ENABLED");
       /* Expected result: PayloadMaxSizeProbablyExceededException when the alert is added to the payload */
       pushSpecificPayloadSize(keystore, password, token, production, true, 257);
@@ -82,7 +82,7 @@ class SpecificNotificationTests extends TestFoundation {
       e.printStackTrace();
     }
     try {
-      System.out.println("");
+      System.out.println();
       System.out.println("TESTING 257-BYTES PAYLOAD WITH SIZE ESTIMATION DISABLED");
       /* Expected result: PayloadMaxSizeExceededException when the payload is pushed */
       pushSpecificPayloadSize(keystore, password, token, production, false, 257);
@@ -90,7 +90,7 @@ class SpecificNotificationTests extends TestFoundation {
       e.printStackTrace();
     }
     try {
-      System.out.println("");
+      System.out.println();
       System.out.println("TESTING 256-BYTES PAYLOAD");
       /* Expected result: no exception */
       pushSpecificPayloadSize(keystore, password, token, production, false, 256);
@@ -101,7 +101,7 @@ class SpecificNotificationTests extends TestFoundation {
 
   private static void test_Issue75(final String keystore, final String password, final String token, final boolean production) {
     try {
-      System.out.println("");
+      System.out.println();
       System.out.println("TESTING 257-BYTES PAYLOAD WITH SIZE ESTIMATION ENABLED");
       final NewsstandNotificationPayload payload = NewsstandNotificationPayload.contentAvailable();
       debugPayload(payload);
@@ -115,7 +115,7 @@ class SpecificNotificationTests extends TestFoundation {
 
   private static void test_Issue82(final String keystore, final String password, final String token, final boolean production) {
     try {
-      System.out.println("");
+      System.out.println();
       final Payload payload = PushNotificationPayload.test();
 
       System.out.println("TESTING ISSUE #82 PART 1");
@@ -199,7 +199,7 @@ class SpecificNotificationTests extends TestFoundation {
 
   private static void test_Issue99(final String keystore, final String password, final String token, final boolean production) {
     try {
-      System.out.println("");
+      System.out.println();
       System.out.println("TESTING ISSUE #99");
       final PushNotificationPayload payload = PushNotificationPayload.complex();
       payload.addCustomAlertBody("Hello World!");
@@ -216,7 +216,7 @@ class SpecificNotificationTests extends TestFoundation {
 
   private static void test_Issue102(final String keystore, final String password, String token, final boolean production) {
     try {
-      System.out.println("");
+      System.out.println();
       System.out.println("TESTING ISSUE #102");
       final int devices = 10000;
       final int threads = 20;
@@ -271,7 +271,7 @@ class SpecificNotificationTests extends TestFoundation {
 
   private static void test_ThreadPoolFeature(final String keystore, final String password, final String token, final boolean production) {
     try {
-      System.out.println("");
+      System.out.println();
       System.out.println("TESTING THREAD POOL FEATURE");
 
       final AppleNotificationServer server = new AppleNotificationServerBasicImpl(keystore, password, production);

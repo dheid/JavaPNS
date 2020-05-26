@@ -26,7 +26,7 @@ class TestFoundation {
       final boolean optional = argRequired.startsWith("[");
       if (optional) {
         message.append(" [");
-        message.append(argRequired.substring(1, argRequired.length() - 1));
+        message.append(argRequired, 1, argRequired.length() - 1);
         message.append("]");
       } else {
         message.append(" <");
