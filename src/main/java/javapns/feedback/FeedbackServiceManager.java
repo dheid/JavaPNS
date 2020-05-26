@@ -84,7 +84,7 @@ public class FeedbackServiceManager {
   private LinkedList<Device> getDevices(final SSLSocket socket) throws CommunicationException {
 
     // Compute
-    LinkedList<Device> listDev = null;
+    LinkedList<Device> listDev;
       try (socket) {
           final InputStream socketStream = socket.getInputStream();
 
