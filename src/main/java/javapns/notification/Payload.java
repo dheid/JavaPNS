@@ -261,7 +261,7 @@ public abstract class Payload {
    * @param opt           true to use putOpt, false to use put
    * @throws JSONException
    */
-  void put(final String propertyName, final Object propertyValue, final JSONObject object, final boolean opt) throws JSONException {
+  protected void put(final String propertyName, final Object propertyValue, final JSONObject object, final boolean opt) throws JSONException {
     try {
       if (isPayloadSizeEstimatedWhenAdding()) {
         final int maximumPayloadSize = getMaximumPayloadSize();
