@@ -1,39 +1,56 @@
-## JavaPNS
+# JavaPNS
 
-Apple Push Notification Service Provider for Java
+JavaPNS is a Java library to send notifications through the Apple Push Notification Service (APNS). It
+allows to push notifications to iOS devices through APNS.
 
-Fork of JavaPNS to include Maven support - http://code.google.com/p/javapns/
+This is a modified fork of the [JavaPNS](https://github.com/mlaccetti/JavaPNS) fork from
+[mlaccetti](https://github.com/mlaccetti). The original version comes from Sylvain Pedneault and is located
+[here](http://code.google.com/p/javapns).
 
-Java 11+ compatible
+You'll find many examples on how to use this library [here](https://code.google.com/archive/p/javapns/wikis).
 
-### Updates
+## Usage
 
-Version 2.3.3 released!
+JavaPNS is available on the Central Maven Repository. To use it in your project, please add the following dependency to your POM:
 
-#### 2.3.3 Changes
-* Update dependencies: org.json and slf4j
-* Little tweaks
-* Replace deprecated SSLSession methods
-
-#### 2.3.2 Changes
-* 1.8 tweaks
-* General cleanup and overhaul
-
-#### 2.3.1 Changes
-* PushNotificationBigPayload ```complex``` and ```fromJson``` methods fixed
-* Fix to make trust store work on IBM JVM
-
-#### 2.3 Changes
-* iOS>=8 bigger notification payload support (2KB)
-* iOS>=7 Silent push notifications support ("content-available":1)
-
-### Installation through Central Maven Repository
-javapns is available on the Central Maven Repository.
-To use javapns in your project, please add the following dependency to your pom.xml file:
-```
+```xml
 <dependency>
 	<groupId>org.drjekyll</groupId>
 	<artifactId>javapns</artifactId>
 	<version>2.3.3</version>
 </dependency>
 ```
+
+## Release Notes
+
+Version 2.4.0 released!
+
+### 2.3.4
+
+* Make put method of Payload protected
+* Make constructors of PushNotificationPayload protected
+* Code cleanup
+* Remove duplicate exceptions from getMessage in PushNotificationManager
+* Remove throws clauses on methods for checked exceptions that will never be thrown
+
+### 2.3.3
+
+* Update dependencies: org.json and slf4j
+* Little tweaks
+* Replace deprecated SSLSession methods
+
+### 2.3.2
+
+* 1.8 tweaks
+* General cleanup and overhaul
+
+### 2.3.1
+
+* PushNotificationBigPayload ```complex``` and ```fromJson``` methods fixed
+* Fix to make trust store work on IBM JVM
+
+### 2.3
+
+* iOS>=8 bigger notification payload support (2 KB)
+* iOS>=7 Silent push notifications support ("content-available":1)
+
