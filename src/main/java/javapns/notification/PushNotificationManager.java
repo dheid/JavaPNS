@@ -584,13 +584,13 @@ public class PushNotificationManager {
     // Write command to ByteArrayOutputStream
     // 0 = simple
     // 1 = enhanced
+    final byte b;
     if (useEnhancedNotificationFormat) {
-      final byte b = 1;
-      bao.write(b);
+      b = 1;
     } else {
-      final byte b = 0;
-      bao.write(b);
+      b = 0;
     }
+    bao.write(b);
 
     if (useEnhancedNotificationFormat) {
       // 4 bytes identifier (which will match any error packet received later on)
