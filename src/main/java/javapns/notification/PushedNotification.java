@@ -227,10 +227,7 @@ public class PushedNotification {
     if (response == null) {
       return true;
     }
-    if (!response.isValidErrorMessage()) {
-      return true;
-    }
-    return false;
+    return !response.isValidErrorMessage();
   }
 
   /**
