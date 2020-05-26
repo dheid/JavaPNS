@@ -6,7 +6,7 @@ import javapns.devices.exceptions.InvalidDeviceTokenFormatException;
 import java.sql.Timestamp;
 
 /**
- * This class is used to represent a Device (iPhone)
+ * This class is used to represent a device (iPhone)
  *
  * @author Maxime Peron
  */
@@ -37,17 +37,16 @@ public class BasicDevice implements Device {
    *
    * @param token The device token
    */
-  public BasicDevice(final String token) throws InvalidDeviceTokenFormatException {
+  public BasicDevice(String token) throws InvalidDeviceTokenFormatException {
     this(token, true);
   }
 
-  private BasicDevice(final String token, final boolean validate) throws InvalidDeviceTokenFormatException {
-    super();
+  private BasicDevice(String token, boolean validate) throws InvalidDeviceTokenFormatException {
     this.deviceId = token;
     this.token = token;
     try {
       this.lastRegister = new Timestamp(System.currentTimeMillis());
-    } catch (final Exception e) {
+    } catch (RuntimeException e) {
       // empty
     }
 
@@ -62,8 +61,7 @@ public class BasicDevice implements Device {
    * @param id    The device id
    * @param token The device token
    */
-  BasicDevice(final String id, final String token, final Timestamp register) throws InvalidDeviceTokenFormatException {
-    super();
+  BasicDevice(String id, String token, Timestamp register) throws InvalidDeviceTokenFormatException {
     this.deviceId = id;
     this.token = token;
     this.lastRegister = register;
@@ -72,13 +70,9 @@ public class BasicDevice implements Device {
 
   }
 
-  public static void validateTokenFormat(final String token) throws InvalidDeviceTokenFormatException {
+  public static void validateTokenFormat(String token) throws InvalidDeviceTokenFormatException {
     if (token == null) {
-      throw new InvalidDeviceTokenFormatException("Device Token is null, and not the required 64 bytes...");
-    }
-
-    if (token.getBytes().length != 64) {
-      throw new InvalidDeviceTokenFormatException("Device Token has a length of [" + token.getBytes().length + "] and not the required 64 bytes!");
+      throw new InvalidDeviceTokenFormatException("Device token may not be null");
     }
   }
 
@@ -91,6 +85,7 @@ public class BasicDevice implements Device {
    *
    * @return the device id
    */
+  @Override
   public String getDeviceId() {
     return deviceId;
   }
@@ -100,7 +95,8 @@ public class BasicDevice implements Device {
    *
    * @param id the device id
    */
-  public void setDeviceId(final String id) {
+  @Override
+  public void setDeviceId(String id) {
     this.deviceId = id;
   }
 
@@ -109,6 +105,7 @@ public class BasicDevice implements Device {
    *
    * @return the device token
    */
+  @Override
   public String getToken() {
     return token;
   }
@@ -116,9 +113,10 @@ public class BasicDevice implements Device {
   /**
    * Setter the device token
    *
-   * @param token
+   * @param token The device token
    */
-  public void setToken(final String token) {
+  @Override
+  public void setToken(String token) {
     this.token = token;
   }
 
@@ -127,11 +125,13 @@ public class BasicDevice implements Device {
    *
    * @return the last register
    */
+  @Override
   public Timestamp getLastRegister() {
     return lastRegister;
   }
 
-  public void setLastRegister(final Timestamp lastRegister) {
+  @Override
+  public void setLastRegister(Timestamp lastRegister) {
     this.lastRegister = lastRegister;
   }
 }

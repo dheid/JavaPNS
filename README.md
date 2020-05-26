@@ -45,6 +45,10 @@ This project is licensed under the LGPL License - see the [license](LICENSE.md) 
 
 Version 2.3.4 released!
 
+### 2.3.5
+
+* Allow device tokens with more than 64 bytes
+
 ### 2.3.4
 
 * Make put method of Payload protected
