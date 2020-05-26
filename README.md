@@ -45,10 +45,11 @@ This project is licensed under the LGPL License - see the [license](LICENSE.md) 
 
 Version 2.3.4 released!
 
-### 2.3.5
+### 2.4.0
 
 * Allow device tokens with more than 64 bytes
 * Increase the maximum payload size to 4000 bytes
+* Keep SSL connections alive
 
 ### 2.3.4
 
