@@ -577,7 +577,7 @@ public class PushNotificationManager {
     preconfigurePayload(payload, identifier, upperCasedDeviceToken);
     // Create the ByteArrayOutputStream which will contain the raw interface
     final byte[] payloadAsBytes = payload.getPayloadAsBytes();
-    final int size = (Byte.SIZE / Byte.SIZE) + (Character.SIZE / Byte.SIZE) + deviceTokenAsBytes.length + (Character.SIZE / Byte.SIZE) + payloadAsBytes.length;
+    final int size = 1 + (Character.SIZE / Byte.SIZE) + deviceTokenAsBytes.length + (Character.SIZE / Byte.SIZE) + payloadAsBytes.length;
     final ByteArrayOutputStream bao = new ByteArrayOutputStream(size);
 
     // Write command to ByteArrayOutputStream
