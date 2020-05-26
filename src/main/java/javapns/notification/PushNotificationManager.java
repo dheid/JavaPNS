@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocket;
-import java.security.cert.X509Certificate;
 import java.io.*;
 import java.net.Socket;
 import java.nio.ByteBuffer;
