@@ -219,6 +219,17 @@ public class PushNotificationPayload extends Payload {
   }
 
   /**
+   * Add a media attachment.
+   *
+   * @param mediaUrl the URL of the media
+   */
+  public void addMedia(String mediaUrl) {
+    logger.debug("Adding mediaUrl [{}]", mediaUrl);
+    put("mutable-content", 1, this.apsDictionary, false);
+    put("my-attachment", mediaUrl, getPayload(), false);
+  }
+
+  /**
    * Add a simple alert message.
    * Note: you cannot add a simple and a custom alert in the same payload.
    *
