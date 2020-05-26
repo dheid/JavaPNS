@@ -253,15 +253,15 @@ public class KeystoreManager {
   }
 
   private static void validateFileKeystore(File keystore) throws InvalidKeystoreReferenceException {
-    final File file = keystore;
-    if (!file.exists()) {
-      throw new InvalidKeystoreReferenceException("Invalid keystore reference.  File does not exist: " + file.getAbsolutePath());
+    if (!keystore.exists()) {
+      throw new InvalidKeystoreReferenceException("Invalid keystore reference.  File does not exist: " + keystore.getAbsolutePath());
     }
-    if (!file.isFile()) {
-      throw new InvalidKeystoreReferenceException("Invalid keystore reference.  Path does not refer to a valid file: " + file.getAbsolutePath());
+    if (!keystore.isFile()) {
+      throw new InvalidKeystoreReferenceException("Invalid keystore reference.  Path does not refer to a valid file: " + keystore
+        .getAbsolutePath());
     }
-    if (file.length() <= 0) {
-      throw new InvalidKeystoreReferenceException("Invalid keystore reference.  File is empty: " + file.getAbsolutePath());
+    if (keystore.length() <= 0) {
+      throw new InvalidKeystoreReferenceException("Invalid keystore reference.  File is empty: " + keystore.getAbsolutePath());
     }
     return;
   }
