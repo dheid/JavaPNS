@@ -45,6 +45,10 @@ This project is licensed under the LGPL License - see the [license](LICENSE.md) 
 
 Version 2.4.1 released!
 
+### 2.4.2
+
+* Logging improvements (replace string concatenation)
+
 ### 2.4.1
 
 * Deprecate PushNotificationBigPayload. Use PushNotificationPayload instead.

@@ -77,7 +77,7 @@ public abstract class Payload {
    * @throws JSONException
    */
   public void addCustomDictionary(final String name, final String value) throws JSONException {
-    logger.debug(ADDING_CUSTOM_DICTIONARY + name + DELIMITER_START + value + DELIMITED_END);
+      logger.debug(ADDING_CUSTOM_DICTIONARY + "{}" + DELIMITER_START + "{}" + DELIMITED_END, name, value);
     put(name, value, payload, false);
   }
 
@@ -89,7 +89,7 @@ public abstract class Payload {
    * @throws JSONException
    */
   public void addCustomDictionary(final String name, final int value) throws JSONException {
-    logger.debug(ADDING_CUSTOM_DICTIONARY + name + DELIMITER_START + value + DELIMITED_END);
+      logger.debug(ADDING_CUSTOM_DICTIONARY + "{}" + DELIMITER_START + "{}" + DELIMITED_END, name, value);
     put(name, value, payload, false);
   }
 
@@ -101,7 +101,7 @@ public abstract class Payload {
    * @throws JSONException
    */
   public void addCustomDictionary(final String name, final List values) throws JSONException {
-    logger.debug(ADDING_CUSTOM_DICTIONARY + name + "] = (list)");
+      logger.debug(ADDING_CUSTOM_DICTIONARY + "{}] = (list)", name);
     put(name, values, payload, false);
   }
 
@@ -113,7 +113,7 @@ public abstract class Payload {
    * @throws JSONException
    */
   public void addCustomDictionary(final String name, final Object value) throws JSONException {
-    logger.debug(ADDING_CUSTOM_DICTIONARY + name + DELIMITER_START + value + DELIMITED_END);
+      logger.debug(ADDING_CUSTOM_DICTIONARY + "{}" + DELIMITER_START + "{}" + DELIMITED_END, name, value);
     put(name, value, payload, false);
   }
 

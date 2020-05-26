@@ -101,7 +101,7 @@ public class FeedbackServiceManager {
           listDev = new LinkedList<>();
           final byte[] listOfDevices = message.toByteArray();
           final int nbTuples = listOfDevices.length / FEEDBACK_TUPLE_SIZE;
-          logger.debug("Found: [" + nbTuples + "]");
+        logger.debug("Found: [{}]", nbTuples);
           for (int i = 0; i < nbTuples; i++) {
               final int offset = i * FEEDBACK_TUPLE_SIZE;
 
@@ -136,13 +136,7 @@ public class FeedbackServiceManager {
               device.setToken(deviceToken);
               device.setLastRegister(timestamp);
               listDev.add(device);
-              logger.info("FeedbackManager retrieves one device :  "
-                          + timestamp
-                          + ";"
-                          + deviceTokenLength
-                          + ";"
-                          + deviceToken
-                          + ".");
+            logger.info("FeedbackManager retrieves one device :  {};{};{}.", timestamp, deviceTokenLength, deviceToken);
           }
 
           // Close the socket and return the list

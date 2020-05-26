@@ -63,7 +63,7 @@ public class NewsstandNotificationPayload extends Payload {
   }
 
   private void addContentAvailable(final int contentAvailable) throws JSONException {
-    logger.debug("Adding ContentAvailable [" + contentAvailable + "]");
+      logger.debug("Adding ContentAvailable [{}]", contentAvailable);
     this.apsDictionary.put("content-available", contentAvailable);
   }
 

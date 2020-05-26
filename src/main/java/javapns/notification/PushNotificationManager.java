@@ -148,7 +148,12 @@ public class PushNotificationManager {
       if (heavyDebugMode) {
         dumpCertificateChainDescription();
       }
-      logger.debug("Initialized Connection to Host: [" + server.getNotificationServerHost() + "] Port: [" + server.getNotificationServerPort() + "]: " + socket);
+      logger.debug(
+        "Initialized Connection to Host: [{}] Port: [{}]: {}",
+        server.getNotificationServerHost(),
+        server.getNotificationServerPort(),
+        socket
+      );
     } catch (final KeystoreException | CommunicationException e) {
       throw e;
     } catch (final Exception e) {
@@ -273,7 +278,7 @@ public class PushNotificationManager {
         }
         pushedNotifications.clear();
         final int toResend = notificationsToResend.size();
-        logger.debug("Found " + toResend + " notifications that must be re-sent");
+        logger.debug("Found {} notifications that must be re-sent", toResend);
         if (toResend > 0) {
           logger.debug("Restarting connection to resend notifications");
           restartPreviousConnection();
@@ -429,8 +434,8 @@ public class PushNotificationManager {
       // Keep trying until we have a success
       while (!success) {
         try {
-          logger.debug("Attempting to send notification: " + payload.toString() + "");
-          logger.debug("  to device: " + token + "");
+          logger.debug("Attempting to send notification: {}", payload.toString());
+          logger.debug("  to device: {}", token);
           notification.addTransmissionAttempt();
           boolean streamConfirmed = false;
           try {
@@ -438,7 +443,7 @@ public class PushNotificationManager {
               this.socket.getOutputStream().write(bytes);
               streamConfirmed = true;
             } else {
-              logger.debug("* Simulation only: would have streamed " + bytes.length + "-bytes message now..");
+              logger.debug("* Simulation only: would have streamed {}-bytes message now..", bytes.length);
             }
           } catch (final Exception e) {
             if (e.toString().contains("certificate_unknown")) {
@@ -449,11 +454,14 @@ public class PushNotificationManager {
           logger.debug("Flushing");
           this.socket.getOutputStream().flush();
           if (streamConfirmed) {
-            logger.debug("At this point, the entire " + bytes.length + "-bytes message has been streamed out successfully through the SSL connection");
+            logger.debug(
+              "At this point, the entire {}-bytes message has been streamed out successfully through the SSL connection",
+              bytes.length
+            );
           }
 
           success = true;
-          logger.debug("Notification sent on " + notification.getLatestTransmissionAttempt());
+          logger.debug("Notification sent on {}", notification.getLatestTransmissionAttempt());
           notification.setTransmissionCompleted(true);
 
         } catch (final IOException e) {
@@ -466,7 +474,7 @@ public class PushNotificationManager {
             throw e;
 
           } else {
-            logger.info("Attempt failed (" + e.getMessage() + ")... trying again");
+            logger.info("Attempt failed ({})... trying again", e.getMessage());
             //Try again
             try {
               this.socket.close();
@@ -485,7 +493,7 @@ public class PushNotificationManager {
     } catch (final Exception ex) {
 
       notification.setException(ex);
-      logger.error("Delivery error: " + ex);
+      logger.error("Delivery error: {}", ex);
       try {
         if (closeAfter) {
           logger.error("Closing connection after error");
@@ -509,7 +517,7 @@ public class PushNotificationManager {
    */
   @Deprecated
   public void addDevice(final String id, final String token) throws Exception {
-    logger.debug("Adding Token [" + token + "] to Device [" + id + "]");
+    logger.debug("Adding Token [{}] to Device [{}]", token, id);
     deviceFactory.addDevice(id, token);
   }
 
@@ -524,7 +532,7 @@ public class PushNotificationManager {
    */
   @Deprecated
   public Device getDevice(final String id) throws UnknownDeviceException, NullIdException {
-    logger.debug("Getting Token from Device [" + id + "]");
+    logger.debug("Getting Token from Device [{}]", id);
     return deviceFactory.getDevice(id);
   }
 
@@ -538,7 +546,7 @@ public class PushNotificationManager {
    */
   @Deprecated
   public void removeDevice(final String id) throws UnknownDeviceException, NullIdException {
-    logger.debug("Removing Token from Device [" + id + "]");
+    logger.debug("Removing Token from Device [{}]", id);
     deviceFactory.removeDevice(id);
   }
 
@@ -636,7 +644,7 @@ public class PushNotificationManager {
       }
     }
 
-    logger.debug("Built raw message ID " + identifier + " of total length " + bytes.length);
+    logger.debug("Built raw message ID {} of total length {}", identifier, bytes.length);
     return bytes;
   }
 
