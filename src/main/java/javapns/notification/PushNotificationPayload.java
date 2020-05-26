@@ -17,10 +17,11 @@ import java.util.List;
  */
 public class PushNotificationPayload extends Payload {
 
-  static final Logger logger = LoggerFactory.getLogger(PushNotificationPayload.class);
+  private static final Logger logger = LoggerFactory.getLogger(PushNotificationPayload.class);
 
   /* Maximum total length (serialized) of a payload */
-  private static final int MAXIMUM_PAYLOAD_LENGTH = 256;
+  private static final int MAXIMUM_PAYLOAD_LENGTH = 4000;
+
   public static final String ALERT = "alert";
 
   /* The application Dictionary */
@@ -30,14 +31,13 @@ public class PushNotificationPayload extends Payload {
    * Create a default payload with a blank "aps" dictionary.
    */
   protected PushNotificationPayload() {
-    super();
     this.apsDictionary = new JSONObject();
     try {
-      final JSONObject payload = getPayload();
+      JSONObject payload = getPayload();
       if (!payload.has("aps")) {
         payload.put("aps", this.apsDictionary);
       }
-    } catch (final JSONException e) {
+    } catch (JSONException e) {
       logger.error(e.getMessage(), e);
     }
   }
@@ -49,17 +49,16 @@ public class PushNotificationPayload extends Payload {
    * @param rawJSON a JSON-formatted string (ex: {"aps":{"alert":"Hello World!"}} )
    * @throws JSONException thrown if a exception occurs while parsing the JSON string
    */
-  protected PushNotificationPayload(final String rawJSON) throws JSONException {
+  protected PushNotificationPayload(String rawJSON) {
     super(rawJSON);
     try {
-      final JSONObject payload = getPayload();
+      JSONObject payload = getPayload();
       this.apsDictionary = payload.getJSONObject("aps");
       if (this.apsDictionary == null) {
         this.apsDictionary = new JSONObject();
         payload.put("aps", this.apsDictionary);
       }
-
-    } catch (final JSONException e) {
+    } catch (JSONException e) {
       logger.error(e.getMessage(), e);
     }
   }
@@ -70,9 +69,8 @@ public class PushNotificationPayload extends Payload {
    * @param alert the alert message
    * @param badge the badge
    * @param sound the name of the sound
-   * @throws JSONException
    */
-  public PushNotificationPayload(final String alert, final int badge, final String sound) throws JSONException {
+  public PushNotificationPayload(String alert, int badge, String sound) {
     this();
     if (alert != null) {
       addAlert(alert);
@@ -89,14 +87,14 @@ public class PushNotificationPayload extends Payload {
    * @param message the alert's message
    * @return a ready-to-send payload
    */
-  public static PushNotificationPayload alert(final String message) {
+  public static PushNotificationPayload alert(String message) {
     if (message == null) {
       throw new IllegalArgumentException("Alert cannot be null");
     }
-    final PushNotificationPayload payload = complex();
+    PushNotificationPayload payload = complex();
     try {
       payload.addAlert(message);
-    } catch (final JSONException e) {
+    } catch (JSONException e) {
       // empty
     }
     return payload;
@@ -108,11 +106,11 @@ public class PushNotificationPayload extends Payload {
    * @param badge the badge
    * @return a ready-to-send payload
    */
-  public static PushNotificationPayload badge(final int badge) {
-    final PushNotificationPayload payload = complex();
+  public static PushNotificationPayload badge(int badge) {
+    PushNotificationPayload payload = complex();
     try {
       payload.addBadge(badge);
-    } catch (final JSONException e) {
+    } catch (JSONException e) {
       // empty
     }
     return payload;
@@ -124,14 +122,14 @@ public class PushNotificationPayload extends Payload {
    * @param sound the name of the sound
    * @return a ready-to-send payload
    */
-  public static PushNotificationPayload sound(final String sound) {
+  public static PushNotificationPayload sound(String sound) {
     if (sound == null) {
       throw new IllegalArgumentException("Sound name cannot be null");
     }
-    final PushNotificationPayload payload = complex();
+    PushNotificationPayload payload = complex();
     try {
       payload.addSound(sound);
-    } catch (final JSONException e) {
+    } catch (JSONException e) {
       logger.error(e.getMessage(), e);
     }
     return payload;
@@ -145,11 +143,11 @@ public class PushNotificationPayload extends Payload {
    * @param sound   the name of the sound
    * @return a ready-to-send payload
    */
-  public static PushNotificationPayload combined(final String message, final int badge, final String sound) {
+  public static PushNotificationPayload combined(String message, int badge, String sound) {
     if (message == null && badge < 0 && sound == null) {
       throw new IllegalArgumentException("Must provide at least one non-null argument");
     }
-    final PushNotificationPayload payload = complex();
+    PushNotificationPayload payload = complex();
     try {
       if (message != null) {
         payload.addAlert(message);
@@ -160,7 +158,7 @@ public class PushNotificationPayload extends Payload {
       if (sound != null) {
         payload.addSound(sound);
       }
-    } catch (final JSONException e) {
+    } catch (JSONException e) {
       logger.error(e.getMessage(), e);
     }
     return payload;
@@ -172,7 +170,7 @@ public class PushNotificationPayload extends Payload {
    * @return a ready-to-send payload
    */
   public static PushNotificationPayload test() {
-    final PushNotificationPayload payload = complex();
+    PushNotificationPayload payload = complex();
     payload.setPreSendConfiguration(1);
     return payload;
   }
@@ -196,7 +194,7 @@ public class PushNotificationPayload extends Payload {
    * @return a ready-to-send payload
    * @throws JSONException if any exception occurs parsing the JSON string
    */
-  public static PushNotificationPayload fromJSON(final String rawJSON) throws JSONException {
+  public static PushNotificationPayload fromJSON(String rawJSON) {
     return new PushNotificationPayload(rawJSON);
   }
 
@@ -204,10 +202,9 @@ public class PushNotificationPayload extends Payload {
    * Add a badge.
    *
    * @param badge a badge number
-   * @throws JSONException
    */
-  public void addBadge(final int badge) throws JSONException {
-    logger.debug("Adding badge [" + badge + "]");
+  public void addBadge(int badge) {
+    logger.debug("Adding badge [{}]", badge);
     put("badge", badge, this.apsDictionary, true);
   }
 
@@ -215,10 +212,9 @@ public class PushNotificationPayload extends Payload {
    * Add a sound.
    *
    * @param sound the name of a sound
-   * @throws JSONException
    */
-  public void addSound(final String sound) throws JSONException {
-    logger.debug("Adding sound [" + sound + "]");
+  public void addSound(String sound) {
+    logger.debug("Adding sound [{}]", sound);
     put("sound", sound, this.apsDictionary, true);
   }
 
@@ -227,11 +223,14 @@ public class PushNotificationPayload extends Payload {
    * Note: you cannot add a simple and a custom alert in the same payload.
    *
    * @param alertMessage the alert's message
-   * @throws JSONException
    */
-  public void addAlert(final String alertMessage) throws JSONException {
-    final String previousAlert = getCompatibleProperty(ALERT, String.class, "A custom alert (\"%s\") was already added to this payload");
-    logger.debug("Adding alert [" + alertMessage + "]" + (previousAlert != null ? " replacing previous alert [" + previousAlert + "]" : ""));
+  public void addAlert(String alertMessage) {
+    String previousAlert = getCompatibleProperty(ALERT, String.class, "A custom alert (\"%s\") was already added to this payload");
+    logger.debug(
+      "Adding alert [{}]{}",
+      alertMessage,
+      previousAlert != null ? " replacing previous alert [" + previousAlert + "]" : ""
+    );
     put(ALERT, alertMessage, this.apsDictionary, false);
   }
 
@@ -241,7 +240,7 @@ public class PushNotificationPayload extends Payload {
    * @return the JSON object defining the custom alert
    * @throws JSONException if a simple alert has already been added to this payload
    */
-  private JSONObject getOrAddCustomAlert() throws JSONException {
+  private JSONObject getOrAddCustomAlert() {
     JSONObject alert = getCompatibleProperty(ALERT, JSONObject.class, "A simple alert (\"%s\") was already added to this payload");
     if (alert == null) {
       alert = new JSONObject();
@@ -262,9 +261,8 @@ public class PushNotificationPayload extends Payload {
    * @param expectedClass    the property value's expected (required) class
    * @param exceptionMessage the exception message to throw if the value is not of the expected class
    * @return the property's value
-   * @throws JSONException
    */
-  private <T> T getCompatibleProperty(final String propertyName, final Class<T> expectedClass, final String exceptionMessage) throws JSONException {
+  private <T> T getCompatibleProperty(String propertyName, Class<T> expectedClass, String exceptionMessage) {
     return getCompatibleProperty(propertyName, expectedClass, exceptionMessage, this.apsDictionary);
   }
 
@@ -282,25 +280,29 @@ public class PushNotificationPayload extends Payload {
    * @param exceptionMessage the exception message to throw if the value is not of the expected class
    * @param dictionary       the dictionary where to get the property from
    * @return the property's value
-   * @throws JSONException
    */
   @SuppressWarnings("unchecked")
-  private <T> T getCompatibleProperty(final String propertyName, final Class<T> expectedClass, String exceptionMessage, final JSONObject dictionary) throws JSONException {
+  private static <T> T getCompatibleProperty(
+    String propertyName,
+    Class<T> expectedClass,
+    String exceptionMessage,
+    JSONObject dictionary
+  ) {
     Object propertyValue = null;
     try {
       propertyValue = dictionary.get(propertyName);
-    } catch (final Exception e) {
+    } catch (Exception e) {
       // empty
     }
     if (propertyValue == null) {
       return null;
     }
-    if (propertyValue.getClass().equals(expectedClass)) {
+    if (propertyValue.getClass() == expectedClass) {
       return (T) propertyValue;
     }
     try {
       throw new PayloadAlertAlreadyExistsException(String.format(exceptionMessage, propertyValue));
-    } catch (final IllegalFormatException e) {
+    } catch (IllegalFormatException e) {
       throw new PayloadAlertAlreadyExistsException(exceptionMessage);
     }
 
@@ -312,7 +314,7 @@ public class PushNotificationPayload extends Payload {
    * @param body the body of the alert
    * @throws JSONException if the custom alert cannot be added because a simple alert already exists
    */
-  public void addCustomAlertBody(final String body) throws JSONException {
+  public void addCustomAlertBody(String body) {
     put("body", body, getOrAddCustomAlert(), false);
   }
 
@@ -322,38 +324,37 @@ public class PushNotificationPayload extends Payload {
    * @param actionLocKey the title of the alert's right button, or null to remove the button
    * @throws JSONException if the custom alert cannot be added because a simple alert already exists
    */
-  public void addCustomAlertActionLocKey(final String actionLocKey) throws JSONException {
-    final Object value = actionLocKey != null ? actionLocKey : JSONObject.NULL;
+  public void addCustomAlertActionLocKey(String actionLocKey) {
+    Object value = actionLocKey != null ? actionLocKey : JSONObject.NULL;
     put("action-loc-key", value, getOrAddCustomAlert(), false);
   }
 
   /**
    * Create a custom alert (if none exist) and add a loc-key parameter.
    *
-   * @param locKey
+   * @param locKey The loc-key property value
    * @throws JSONException if the custom alert cannot be added because a simple alert already exists
    */
-  public void addCustomAlertLocKey(final String locKey) throws JSONException {
+  public void addCustomAlertLocKey(String locKey) {
     put("loc-key", locKey, getOrAddCustomAlert(), false);
   }
 
   /**
    * Create a custom alert (if none exist) and add sub-parameters for the loc-key parameter.
    *
-   * @param args
+   * @param args The loc-args parameter
    * @throws JSONException if the custom alert cannot be added because a simple alert already exists
    */
-  public void addCustomAlertLocArgs(final List args) throws JSONException {
+  public void addCustomAlertLocArgs(List<?> args) {
     put("loc-args", args, getOrAddCustomAlert(), false);
   }
 
   /**
    * Sets the content available.
    *
-   * @param available
-   * @throws JSONException
+   * @param available Should the content be available?
    */
-  public void setContentAvailable(final boolean available) throws JSONException {
+  public void setContentAvailable(boolean available) {
     if (available) {
       put("content-available", 1, this.apsDictionary, false);
     } else {
@@ -363,15 +364,16 @@ public class PushNotificationPayload extends Payload {
 
   /**
    * Return the maximum payload size in bytes.
-   * For APNS payloads, this method returns 256.
+   * For APNS payloads, this method returns 4000.
    *
-   * @return the maximum payload size in bytes (256)
+   * @return the maximum payload size in bytes (4000)
    */
   @Override
   public int getMaximumPayloadSize() {
     return MAXIMUM_PAYLOAD_LENGTH;
   }
 
+  @Override
   void verifyPayloadIsNotEmpty() {
     if (getPreSendConfiguration() != 0) {
       return;

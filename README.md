@@ -48,6 +48,7 @@ Version 2.3.4 released!
 ### 2.3.5
 
 * Allow device tokens with more than 64 bytes
+* Increase the maximum payload size to 4000 bytes
 
 ### 2.3.4
 
