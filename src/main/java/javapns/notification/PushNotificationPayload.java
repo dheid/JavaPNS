@@ -29,7 +29,7 @@ public class PushNotificationPayload extends Payload {
   /**
    * Create a default payload with a blank "aps" dictionary.
    */
-  PushNotificationPayload() {
+  protected PushNotificationPayload() {
     super();
     this.apsDictionary = new JSONObject();
     try {
@@ -49,7 +49,7 @@ public class PushNotificationPayload extends Payload {
    * @param rawJSON a JSON-formatted string (ex: {"aps":{"alert":"Hello World!"}} )
    * @throws JSONException thrown if a exception occurs while parsing the JSON string
    */
-  PushNotificationPayload(final String rawJSON) throws JSONException {
+  protected PushNotificationPayload(final String rawJSON) throws JSONException {
     super(rawJSON);
     try {
       final JSONObject payload = getPayload();
