@@ -10,6 +10,13 @@
   <description>Java API for Apple Push Notification Service</description>
   <url>https://javapns.drjekyll.org</url>
 
+  <organization>
+    <name>drjekyll.org</name>
+    <url>https://github.com/drjekyll-org</url>
+  </organization>
+
+  <inceptionYear>2011</inceptionYear>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
