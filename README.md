@@ -43,7 +43,7 @@ This project is licensed under the LGPL License - see the [LICENSE.md](LICENSE.m
 
 ## Release Notes
 
-Version 2.4.0 released!
+Version 2.3.4 released!
 
 ### 2.3.4
 
