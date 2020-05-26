@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.drjekyll</groupId>
   <artifactId>javapns</artifactId>
-  <version>2.3.4-SNAPSHOT</version>
+  <version>2.3.4</version>
 
   <name>JavaPNS</name>
   <description>Java API for Apple Push Notification Service</description>
@@ -171,7 +171,7 @@
     <developerConnection>scm:git:git@github.com:drjekyll-org/javapns.git</developerConnection>
     <connection>scm:git:https://github.com/drjekyll-org/javapns.git</connection>
     <url>https://github.com/drjekyll-org/javapns</url>
-    <tag>HEAD</tag>
+    <tag>javapns-2.3.4</tag>
   </scm>
 
   <distributionManagement>
