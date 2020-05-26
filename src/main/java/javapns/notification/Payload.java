@@ -150,7 +150,7 @@ public abstract class Payload {
    *
    * @return byte[] bytes ready to be streamed directly to Apple servers (but that might exceed the maximum size limit)
    */
-  private byte[] getPayloadAsBytesUnchecked() throws Exception {
+  private byte[] getPayloadAsBytesUnchecked() {
     byte[] bytes;
     try {
       bytes = toString().getBytes(characterEncoding);

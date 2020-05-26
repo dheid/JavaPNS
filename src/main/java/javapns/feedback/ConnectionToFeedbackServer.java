@@ -16,7 +16,7 @@ public class ConnectionToFeedbackServer extends ConnectionToAppleServer {
     super(feedbackServer);
   }
 
-  public ConnectionToFeedbackServer(final AppleNotificationServer server, final KeyStore keystore) throws KeystoreException {
+  public ConnectionToFeedbackServer(final AppleNotificationServer server, final KeyStore keystore) {
     super(server, keystore);
   }
 

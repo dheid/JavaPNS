@@ -271,7 +271,7 @@ class SpecificNotificationTests extends TestFoundation {
     }
   }
 
-  private static void test_ThreadPoolFeature(final String keystore, final String password, final String token, final boolean production) throws Exception {
+  private static void test_ThreadPoolFeature(final String keystore, final String password, final String token, final boolean production) {
     try {
       System.out.println("");
       System.out.println("TESTING THREAD POOL FEATURE");

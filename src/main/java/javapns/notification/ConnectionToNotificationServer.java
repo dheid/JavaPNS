@@ -15,7 +15,7 @@ public class ConnectionToNotificationServer extends ConnectionToAppleServer {
     super(server);
   }
 
-  public ConnectionToNotificationServer(final AppleNotificationServer server, final KeyStore keystore) throws KeystoreException {
+  public ConnectionToNotificationServer(final AppleNotificationServer server, final KeyStore keystore) {
     super(server, keystore);
   }
 
