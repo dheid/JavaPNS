@@ -301,9 +301,7 @@ class SpecificNotificationTests extends TestFoundation {
 
   private static void pushSpecificPayloadSize(final String keystore, final String password, final String token, final boolean production, final boolean checkWhenAdding, final int targetPayloadSize) throws CommunicationException, KeystoreException, JSONException {
     final StringBuilder buf = new StringBuilder();
-    for (int i = 0; i < targetPayloadSize - 20; i++) {
-      buf.append('x');
-    }
+    buf.append("x".repeat(Math.max(0, targetPayloadSize - 20)));
 
     final String alertMessage = buf.toString();
     final PushNotificationPayload payload = PushNotificationPayload.complex();
