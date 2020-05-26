@@ -50,6 +50,7 @@ Version 2.3.4 released!
 * Allow device tokens with more than 64 bytes
 * Increase the maximum payload size to 4000 bytes
 * Keep SSL connections alive
+* Allow to add media attachment to PushNotificationPayload
 
 ### 2.3.4
 
