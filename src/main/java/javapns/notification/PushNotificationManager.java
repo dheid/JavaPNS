@@ -605,8 +605,8 @@ public class PushNotificationManager {
       } else {
         final long ctime = System.currentTimeMillis();
         final long ttl = requestedExpiry * 1000; // time-to-live in milliseconds
-        final Long expiryDateInSeconds = (ctime + ttl) / 1000L;
-        bao.write(intTo4ByteArray(expiryDateInSeconds.intValue()));
+        final long expiryDateInSeconds = (ctime + ttl) / 1000L;
+        bao.write(intTo4ByteArray((int) expiryDateInSeconds));
         message.setExpiry(ctime + ttl);
       }
     }

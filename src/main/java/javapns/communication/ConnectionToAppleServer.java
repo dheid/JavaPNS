@@ -150,7 +150,7 @@ public abstract class ConnectionToAppleServer {
 
     // If a proxy was set, tunnel through the proxy to create the connection
     final String tunnelHost = ProxyManager.getProxyHost(server);
-    final Integer tunnelPort = ProxyManager.getProxyPort(server);
+    final int tunnelPort = ProxyManager.getProxyPort(server);
 
     final Socket tunnel = new Socket(tunnelHost, tunnelPort);
     doTunnelHandshake(tunnel, getServerHost(), getServerPort());
