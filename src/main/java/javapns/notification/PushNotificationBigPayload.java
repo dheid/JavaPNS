@@ -2,9 +2,11 @@ package javapns.notification;
 
 import org.json.JSONException;
 
+/**
+ * @deprecated The maximum payload length of PushNotificationPayload has been changed to 4000. Use {@link PushNotificationPayload instead}
+ */
+@Deprecated
 public class PushNotificationBigPayload extends PushNotificationPayload {
-  /* Maximum total length (serialized) of a payload */
-  private static final int MAXIMUM_PAYLOAD_LENGTH = 2048;
 
   private PushNotificationBigPayload() {
     super();
@@ -14,22 +16,20 @@ public class PushNotificationBigPayload extends PushNotificationPayload {
     super(rawJSON);
   }
 
+  /**
+   * @deprecated Use {@link PushNotificationPayload#complex}
+   */
+  @Deprecated
   public static PushNotificationBigPayload complex() {
     return new PushNotificationBigPayload();
   }
 
+  /**
+   * @deprecated Use {@link PushNotificationPayload#fromJSON(String)}
+   */
+  @Deprecated
   public static PushNotificationBigPayload fromJSON(final String rawJSON) throws JSONException {
     return new PushNotificationBigPayload(rawJSON);
   }
 
-  /**
-   * Return the maximum payload size in bytes.
-   * For APNS payloads, since iOS8, this method returns 2048.
-   *
-   * @return the maximum payload size in bytes (2048)
-   */
-  @Override
-  public int getMaximumPayloadSize() {
-    return MAXIMUM_PAYLOAD_LENGTH;
-  }
 }

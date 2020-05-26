@@ -19,7 +19,7 @@ JavaPNS is available on the Central Maven Repository. To use it in your project,
 <dependency>
 	<groupId>org.drjekyll</groupId>
 	<artifactId>javapns</artifactId>
-	<version>2.3.4</version>
+	<version>2.4.1</version>
 </dependency>
 ```
 
@@ -43,7 +43,11 @@ This project is licensed under the LGPL License - see the [license](LICENSE.md) 
 
 ## Release Notes
 
-Version 2.3.4 released!
+Version 2.4.1 released!
+
+### 2.4.1
+
+* Deprecate PushNotificationBigPayload. Use PushNotificationPayload instead.
 
 ### 2.4.0
 
