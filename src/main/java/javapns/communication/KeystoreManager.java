@@ -263,7 +263,6 @@ public class KeystoreManager {
     if (keystore.length() <= 0) {
       throw new InvalidKeystoreReferenceException("Invalid keystore reference.  File is empty: " + keystore.getAbsolutePath());
     }
-    return;
   }
 
 }
