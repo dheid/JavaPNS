@@ -19,7 +19,7 @@ JavaPNS is available on the Central Maven Repository. To use it in your project,
 <dependency>
 	<groupId>org.drjekyll</groupId>
 	<artifactId>javapns</artifactId>
-	<version>2.4.1</version>
+	<version>2.4.2</version>
 </dependency>
 ```
 
