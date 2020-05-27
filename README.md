@@ -39,7 +39,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## License
 
-This project is licensed under the LGPL License - see the [license](LICENSE.md) file for details.
+This project is licensed under the LGPL License - see the [license](LICENSE) file for details.
 
 ## Release Notes
 
