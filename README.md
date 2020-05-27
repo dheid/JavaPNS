@@ -2,6 +2,7 @@
 
 ![Maven Verify](https://github.com/drjekyll-org/javapns/workflows/Maven%20Verify/badge.svg)
 ![GitHub](https://img.shields.io/github/license/drjekyll-org/javapns)
+![Maven Central](https://img.shields.io/maven-central/v/org.drjekyll/javapns)
 
 JavaPNS is a Java library to send notifications through the Apple Push Notification Service (APNS). It
 allows to push notifications to iOS devices through APNS.
@@ -20,7 +21,7 @@ JavaPNS is available on the Central Maven Repository. To use it in your project,
 <dependency>
 	<groupId>org.drjekyll</groupId>
 	<artifactId>javapns</artifactId>
-	<version>2.4.2</version>
+	<version>2.4.1</version>
 </dependency>
 ```
 
@@ -43,8 +44,6 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 This project is licensed under the LGPL License - see the [license](LICENSE) file for details.
 
 ## Release Notes
-
-Version 2.4.1 released!
 
 ### 2.4.2
 
