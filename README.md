@@ -49,6 +49,7 @@ This project is licensed under the LGPL License - see the [license](LICENSE) fil
 
 * Logging improvements (replace string concatenation)
 * Add more aps dictionary items: thread-id, category and target-content-id
+* Add more custom alert fields: title, subtitle, launch-image, title-loc-key, title-loc-args, subtitle-loc-key, subtitle-loc-args
 
 ### 2.4.1
 

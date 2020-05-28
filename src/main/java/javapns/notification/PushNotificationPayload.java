@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collection;
 import java.util.IllegalFormatException;
 import java.util.List;
 
@@ -360,13 +361,83 @@ public class PushNotificationPayload extends Payload {
   }
 
   /**
+   * Create a custom alert (if none exist) and add a title to the custom alert.
+   *
+   * @param title the title of the alert
+   * @throws JSONException if the custom alert cannot be added because a simple alert already exists
+   */
+  public void addCustomAlertTitle(String title) {
+    put("title", title, getOrAddCustomAlert(), false);
+  }
+
+  /**
+   * Create a custom alert (if none exist) and add a subtitle to the custom alert.
+   *
+   * @param subtitle the subtitle of the alert
+   * @throws JSONException if the custom alert cannot be added because a simple alert already exists
+   */
+  public void addCustomAlertSubtitle(String subtitle) {
+    put("subtitle", subtitle, getOrAddCustomAlert(), false);
+  }
+
+  /**
+   * Create a custom alert (if none exist) and add a launch image to the custom alert.
+   *
+   * @param launchImage the subtitle of the alert
+   * @throws JSONException if the custom alert cannot be added because a simple alert already exists
+   */
+  public void addCustomAlertLaunchImage(String launchImage) {
+    put("launch-image", launchImage, getOrAddCustomAlert(), false);
+  }
+
+  /**
+   * Create a custom alert (if none exist) and add a key for a localized title string to the custom alert.
+   *
+   * @param titleLocKey the key for a localized title string of the alert
+   * @throws JSONException if the custom alert cannot be added because a simple alert already exists
+   */
+  public void addCustomAlertTitleLocKey(String titleLocKey) {
+    put("title-loc-key", titleLocKey, getOrAddCustomAlert(), false);
+  }
+
+  /**
+   * Create a custom alert (if none exist) and add a array of strings containing replacement values for variables in your title string to the custom alert.
+   *
+   * @param titleLocArgs the array of strings containing replacement values for variables in your title string of the alert
+   * @throws JSONException if the custom alert cannot be added because a simple alert already exists
+   */
+  public void addCustomAlertTitleLocArgs(Collection<CharSequence> titleLocArgs) {
+    put("title-loc-args", titleLocArgs, getOrAddCustomAlert(), false);
+  }
+
+  /**
+   * Create a custom alert (if none exist) and add a key for a localized title string to the custom alert.
+   *
+   * @param subtitleLocKey the key for a localized subtitle string of the alert
+   * @throws JSONException if the custom alert cannot be added because a simple alert already exists
+   */
+  public void addCustomAlertSubtitleLocKey(String subtitleLocKey) {
+    put("subtitle-loc-key", subtitleLocKey, getOrAddCustomAlert(), false);
+  }
+
+  /**
+   * Create a custom alert (if none exist) and add a array of strings containing replacement values for variables in your subtitle string to the custom alert.
+   *
+   * @param subtitleLocArgs the array of strings containing replacement values for variables in your title string of the alert
+   * @throws JSONException if the custom alert cannot be added because a simple alert already exists
+   */
+  public void addCustomAlertSubtitleLocArgs(Collection<CharSequence> subtitleLocArgs) {
+    put("subtitle-loc-args", subtitleLocArgs, getOrAddCustomAlert(), false);
+  }
+
+  /**
    * Create a custom alert (if none exist) and add a custom text for the right button of the popup.
    *
    * @param actionLocKey the title of the alert's right button, or null to remove the button
    * @throws JSONException if the custom alert cannot be added because a simple alert already exists
    */
   public void addCustomAlertActionLocKey(String actionLocKey) {
-    Object value = actionLocKey != null ? actionLocKey : JSONObject.NULL;
+    Object value = actionLocKey == null ? JSONObject.NULL : actionLocKey;
     put("action-loc-key", value, getOrAddCustomAlert(), false);
   }
 
@@ -383,11 +454,11 @@ public class PushNotificationPayload extends Payload {
   /**
    * Create a custom alert (if none exist) and add sub-parameters for the loc-key parameter.
    *
-   * @param args The loc-args parameter
+   * @param locArgs The loc-args
    * @throws JSONException if the custom alert cannot be added because a simple alert already exists
    */
-  public void addCustomAlertLocArgs(List<?> args) {
-    put("loc-args", args, getOrAddCustomAlert(), false);
+  public void addCustomAlertLocArgs(Collection<CharSequence> locArgs) {
+    put("loc-args", locArgs, getOrAddCustomAlert(), false);
   }
 
   /**
