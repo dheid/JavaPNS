@@ -219,6 +219,36 @@ public class PushNotificationPayload extends Payload {
   }
 
   /**
+   * Add an app-specific identifier for grouping related notifications.
+   *
+   * @param threadId the app-specific identifier for grouping related notifications
+   */
+  public void addThreadId(String threadId) {
+    logger.debug("Adding thread id [{}]", threadId);
+    put("thread-id", threadId, this.apsDictionary, true);
+  }
+
+  /**
+   * Add a notification type
+   *
+   * @param category the notification type
+   */
+  public void addCategory(String category) {
+    logger.debug("Adding category [{}]", category);
+    put("category", category, this.apsDictionary, true);
+  }
+
+  /**
+   * Add a identifier of the window brought forward
+   *
+   * @param targetContentId the notification type
+   */
+  public void addTargetContentId(String targetContentId) {
+    logger.debug("Adding target content id [{}]", targetContentId);
+    put("target-content-id", targetContentId, this.apsDictionary, true);
+  }
+
+  /**
    * Add a media attachment.
    *
    * @param mediaUrl the URL of the media

@@ -48,6 +48,7 @@ This project is licensed under the LGPL License - see the [license](LICENSE) fil
 ### 2.4.2
 
 * Logging improvements (replace string concatenation)
+* Add more aps dictionary items: thread-id, category and target-content-id
 
 ### 2.4.1
 

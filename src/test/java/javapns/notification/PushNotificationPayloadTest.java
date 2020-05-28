@@ -29,4 +29,38 @@ public class PushNotificationPayloadTest {
     assertThat(payload.getString("my-attachment"), is("https://some.url.local/attachement"));
 
   }
+
+  @Test
+  public void allowsToAddThreadId() {
+
+    pushNotificationPayload.addThreadId("myThreadId");
+
+    JSONObject payload = pushNotificationPayload.getPayload();
+    JSONObject aps = payload.getJSONObject("aps");
+    assertThat(aps.getString("thread-id"), is("myThreadId"));
+
+  }
+
+  @Test
+  public void allowsToAddCategory() {
+
+    pushNotificationPayload.addCategory("myCategory");
+
+    JSONObject payload = pushNotificationPayload.getPayload();
+    JSONObject aps = payload.getJSONObject("aps");
+    assertThat(aps.getString("category"), is("myCategory"));
+
+  }
+
+  @Test
+  public void allowsToTargetContentId() {
+
+    pushNotificationPayload.addTargetContentId("myTargetContentId");
+
+    JSONObject payload = pushNotificationPayload.getPayload();
+    JSONObject aps = payload.getJSONObject("aps");
+    assertThat(aps.getString("target-content-id"), is("myTargetContentId"));
+
+  }
+
 }
