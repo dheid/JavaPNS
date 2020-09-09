@@ -4,6 +4,9 @@
 ![GitHub](https://img.shields.io/github/license/drjekyll-org/javapns)
 ![Maven Central](https://img.shields.io/maven-central/v/org.drjekyll/javapns)
 
+
+*Deprecated! See https://developer.apple.com/news/?id=11042019a*
+
 JavaPNS is a Java library to send notifications through the Apple Push Notification Service (APNS). It
 allows to push notifications to iOS devices through APNS.
 
